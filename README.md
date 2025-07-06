@@ -1,1 +1,3 @@
-# Linqup_Ui
+# linqup_mobile_application
+
+A new Flutter project.
