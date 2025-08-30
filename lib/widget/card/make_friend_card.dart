@@ -41,6 +41,7 @@ class _MakeFriendCardState extends State<MakeFriendCard> {
 
   @override
   Widget build(context) {
+    final size = MediaQuery.of(context).size;
     return InkWell(
       onTap: widget.onTap,
       child: Stack(
@@ -49,23 +50,23 @@ class _MakeFriendCardState extends State<MakeFriendCard> {
             borderRadius: BorderRadius.circular(30),
             child: Image.asset(
               widget.backgroundImage,
-              height: 350,
-              width: 390,
+              height: size.height * 0.45,
+              width: size.width,
               fit: BoxFit.cover,
             ),
           ),
           Container(
-            height: 350,
-            width: 390,
+            height: size.height * 0.45,
+            width: size.width,
             decoration: BoxDecoration(
               color: Colors.black.withOpacity(0.3),
               borderRadius: BorderRadius.circular(30),
             ),
           ),
           Positioned(
-            top: 10,
-            bottom: 10,
-            left: 10,
+            top: size.height * 0.013,
+            bottom: size.height * 0.013,
+            left: size.width * 0.02,
             child: CardContent(
               cardButtonText: widget.categoryText ?? '',
               cardButtonIcon: widget.categoryIcon ?? '',
@@ -76,7 +77,7 @@ class _MakeFriendCardState extends State<MakeFriendCard> {
             ),
           ),
           Positioned(
-            top: 90,
+            top: size.height * 0.12,
             right: 0,
             child: AnimatedSlide(
               offset: _isVisible ? const Offset(0, 0) : const Offset(0.8, 0),

@@ -23,6 +23,7 @@ class CardContent extends StatelessWidget {
 
   @override
   Widget build(context) {
+    final size = MediaQuery.of(context).size;
     Widget cardTextAndIconContainer = const SizedBox();
     Widget cardProfileContainer = const SizedBox();
 
@@ -52,22 +53,26 @@ class CardContent extends StatelessWidget {
     }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         cardTextAndIconContainer,
-        const Gap(
-          height: 140,
+        Gap(
+          height: size.height * 0.23,
         ),
         SizedBox(
-          width: 250,
+          width: size.width * 0.7,
           child: Name(
               text: text,
+              maxLines: 2,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                     color: Theme.of(context).colorScheme.onPrimary,
                   )),
         ),
-        const Gap(height: 10),
+        Gap(
+          height: size.height * 0.02,
+        ),
         cardProfileContainer,
       ],
     );

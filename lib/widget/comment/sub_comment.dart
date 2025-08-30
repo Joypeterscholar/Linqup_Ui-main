@@ -63,23 +63,27 @@ class _SubCommentItemState extends State<SubCommentItem> {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    CustomInputWrapper(
-                      hintText: 'Reply',
-                      containerWidth: MediaQuery.of(context).size.width * 0.5,
-                      hintStyle: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.copyWith(
-                              color: Theme.of(context).colorScheme.onPrimary),
-                      containerColor: Colors.transparent,
+                    Expanded(
+                      child: CustomInputWrapper(
+                        hintText: 'Reply',
+                        containerWidth: MediaQuery.of(context).size.width,
+                        hintStyle: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(
+                                color: Theme.of(context).colorScheme.onPrimary),
+                        containerColor: Colors.transparent,
+                      ),
                     ),
-                    const Spacer(),
-                    InkWell(
-                        onTap: () {},
-                        child: const Icon(
-                          Icons.send,
-                          color: Colors.white,
-                        ))
+                    // const Spacer(),
+                    Expanded(
+                      child: InkWell(
+                          onTap: () {},
+                          child: const Icon(
+                            Icons.send,
+                            color: Colors.white,
+                          )),
+                    )
                   ],
                 ),
               ],

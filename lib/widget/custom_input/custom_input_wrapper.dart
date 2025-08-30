@@ -48,6 +48,7 @@ class CustomInputWrapper extends StatelessWidget {
 
   @override
   Widget build(context) {
+    final size = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -61,14 +62,14 @@ class CustomInputWrapper extends StatelessWidget {
                         .bodyMedium
                         ?.copyWith(fontWeight: FontWeight.bold),
                   ),
-                  const Gap(
-                    height: 10,
+                  Gap(
+                    height: size.height * 0.01,
                   ),
                 ],
               )
             : const SizedBox(),
         Container(
-          width: containerWidth ?? 350,
+          width: containerWidth ?? size.width,
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           decoration: BoxDecoration(
             color: containerColor ?? Colors.grey.withOpacity(0.1),
@@ -88,8 +89,8 @@ class CustomInputWrapper extends StatelessWidget {
               leadingImage != null
                   ? Image.asset(
                       leadingImage!,
-                      width: 20,
-                      height: 15,
+                      width: size.width * 0.01,
+                      height: size.height * 0.01,
                       fit: BoxFit.cover,
                     )
                   : const SizedBox(),
@@ -97,8 +98,8 @@ class CustomInputWrapper extends StatelessWidget {
                   ? Icon(iconData, color: Colors.grey, size: 25)
                   : const SizedBox(),
               leadingImage != null
-                  ? const Gap(
-                      width: 10,
+                  ? Gap(
+                      width: size.width * 0.01,
                     )
                   : const SizedBox(),
               CustomInput(
@@ -113,8 +114,8 @@ class CustomInputWrapper extends StatelessWidget {
                       onTap: filePickerClick,
                       child: Icon(fileIconData, color: Colors.grey, size: 25))
                   : const SizedBox(),
-              const Gap(
-                width: 10,
+              Gap(
+                width: size.width * 0.01,
               ),
               cameraIconData != null
                   ? InkWell(

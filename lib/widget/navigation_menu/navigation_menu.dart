@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:linqup_mobile_application/providers/state_manager/navigation_menu_state.dart';
-import 'package:linqup_mobile_application/screen/discover/discover_page.dart';
-import 'package:linqup_mobile_application/screen/homepage/homepage.dart';
-import 'package:linqup_mobile_application/screen/matches/matches_page.dart';
-import 'package:linqup_mobile_application/screen/messages/message_page.dart';
-import 'package:linqup_mobile_application/screen/post/post_screen.dart';
+import 'package:linqup_mobile_application/screen/discover_screen.dart';
+import 'package:linqup_mobile_application/screen/home_screen.dart';
+import 'package:linqup_mobile_application/screen/matches_screen.dart';
+import 'package:linqup_mobile_application/screen/message_screen.dart';
+import 'package:linqup_mobile_application/screen/post_screen.dart';
 import 'package:linqup_mobile_application/widget/button/custom_button.dart';
 import 'package:provider/provider.dart';
 
@@ -150,7 +150,7 @@ class NavigationMenu extends StatelessWidget {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const MatchesPage(),
+                      builder: (context) => const MatchesScreen(),
                     ),
                   ),
                 },

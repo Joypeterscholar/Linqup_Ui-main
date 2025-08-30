@@ -79,6 +79,7 @@ class _CardControllerState extends State<CardController> {
                 CustomButton(
                   onClick: () {},
                   customPaddingHorizontal: 10.0,
+
                   customPaddingVertical: 10.0,
                   customBorderRadius: 100,
                   iconData: Icons.more_horiz,

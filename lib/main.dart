@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:linqup_mobile_application/providers/state_manager/make_and_search_state.dart';
 import 'package:linqup_mobile_application/providers/state_manager/navigation_menu_state.dart';
-import 'package:linqup_mobile_application/screen/homepage/homepage.dart';
-import 'package:linqup_mobile_application/screen/interest/interest.dart';
-import 'package:linqup_mobile_application/screen/login/login.dart';
-import 'package:linqup_mobile_application/screen/onboard/onboard_page.dart';
-import 'package:linqup_mobile_application/screen/sign_up/sign_up.dart';
+import 'package:linqup_mobile_application/screen/home_screen.dart';
+import 'package:linqup_mobile_application/screen/interest_screen.dart';
+import 'package:linqup_mobile_application/screen/login_screen.dart';
+import 'package:linqup_mobile_application/screen/onboard_screen.dart';
+import 'package:linqup_mobile_application/screen/sign_up_screen.dart';
 import 'package:provider/provider.dart';
 
 final theme = ThemeData(
@@ -50,7 +50,7 @@ class MainApp extends StatelessWidget {
         body: OnboardPage(),
       ),
       routes: {
-        '/login': (context) => const Login(),
+        '/continue_with': (context) => const Login(),
         '/sign-up': (context) => const SignUp(),
         '/interest': (context) => const InterestScreen(),
         '/homepage': (context) => const Homepage(),
