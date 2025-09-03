@@ -14,22 +14,43 @@ class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
 
   @override
-  Widget build(context) {
+  Widget build(BuildContext context) {
     final navigationMenuState = Provider.of<NavigationMenuState>(context);
+    final size = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
+
+    // Helper to build buttons
+    Widget buildButton({
+      required int index,
+      required IconData icon,
+      required VoidCallback onClick,
+    }) {
+      final isActive = navigationMenuState.activeIndex == index;
+      return CustomButton(
+        onClick: onClick,
+        customPaddingHorizontal: 10.0,
+        customPaddingVertical: 10.0,
+        customBorderRadius: 100,
+        iconData: icon,
+        bgColor: isActive
+            ? theme.colorScheme.inversePrimary
+            : theme.colorScheme.onPrimary,
+        iconColor: isActive ? Colors.white : Colors.purple.withOpacity(0.3),
+      );
+    }
 
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0, right: 10.0, left: 10.0),
       child: Container(
-        height: 70,
+        height: size.height * 0.09,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.onPrimary,
+          color: theme.colorScheme.onPrimary,
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.1),
               blurRadius: 5,
               spreadRadius: 2,
-              offset: const Offset(0, 0),
             )
           ],
           borderRadius: BorderRadius.circular(50),
@@ -39,54 +60,39 @@ class NavigationMenu extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CustomButton(
-                onClick: () => {
-                  navigationMenuState.selectActiveMenu(0),
+              // Home
+              buildButton(
+                index: 0,
+                icon: Icons.home,
+                onClick: () {
+                  navigationMenuState.selectActiveMenu(0);
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => const Homepage(),
-                    ),
-                  )
+                    MaterialPageRoute(builder: (_) => const Homepage()),
+                  );
                 },
-                customPaddingHorizontal: 10.0,
-                customPaddingVertical: 10.0,
-                customBorderRadius: 100,
-                iconData: Icons.home,
-                bgColor: navigationMenuState.activeIndex == 0
-                    ? Theme.of(context).colorScheme.inversePrimary
-                    : Theme.of(context).colorScheme.onPrimary,
-                iconColor: navigationMenuState.activeIndex == 0
-                    ? Colors.white
-                    : Colors.purple.withOpacity(0.5),
               ),
-              CustomButton(
-                onClick: () => {
-                  navigationMenuState.selectActiveMenu(1),
+              // Discover
+              buildButton(
+                index: 1,
+                icon: Icons.assistant_navigation,
+                onClick: () {
+                  navigationMenuState.selectActiveMenu(1);
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => const DiscoverPage(),
-                    ),
-                  ),
+                    MaterialPageRoute(builder: (_) => const DiscoverPage()),
+                  );
                 },
-                customPaddingHorizontal: 10.0,
-                customPaddingVertical: 10.0,
-                customBorderRadius: 100,
-                iconData: Icons.assistant_navigation,
-                bgColor: navigationMenuState.activeIndex == 1
-                    ? Theme.of(context).colorScheme.inversePrimary
-                    : Theme.of(context).colorScheme.onPrimary,
-                iconColor: navigationMenuState.activeIndex == 1
-                    ? Colors.white
-                    : Colors.purple.withOpacity(0.3),
               ),
-              CustomButton(
+              // Add (+)
+              buildButton(
+                index: 2,
+                icon: Icons.add,
                 onClick: () {
                   navigationMenuState.selectActiveMenu(2);
                   showDialog(
                     context: context,
-                    builder: (context) => Container(
+                    builder: (_) => Container(
                       margin: const EdgeInsets.only(bottom: 60, left: 80),
                       child: SimpleDialog(
                         backgroundColor: Colors.transparent,
@@ -98,7 +104,7 @@ class NavigationMenu extends StatelessWidget {
                               horizontal: 16,
                               vertical: 25,
                             ),
-                            width: MediaQuery.of(context).size.width * 0.5,
+                            width: size.width * 0.5,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(12),
@@ -119,7 +125,7 @@ class NavigationMenu extends StatelessWidget {
                                   onTap: () {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
-                                        builder: (ctx) => const PostScreen(),
+                                        builder: (_) => const PostScreen(),
                                       ),
                                     );
                                   },
@@ -133,58 +139,30 @@ class NavigationMenu extends StatelessWidget {
                     ),
                   );
                 },
-                customPaddingHorizontal: 10.0,
-                customPaddingVertical: 10.0,
-                customBorderRadius: 100,
-                iconData: Icons.add,
-                bgColor: navigationMenuState.activeIndex == 2
-                    ? Theme.of(context).colorScheme.inversePrimary
-                    : Theme.of(context).colorScheme.onPrimary,
-                iconColor: navigationMenuState.activeIndex == 2
-                    ? Colors.white
-                    : Colors.purple.withOpacity(0.3),
               ),
-              CustomButton(
-                onClick: () => {
-                  navigationMenuState.selectActiveMenu(3),
+              // Matches
+              buildButton(
+                index: 3,
+                icon: Icons.group,
+                onClick: () {
+                  navigationMenuState.selectActiveMenu(3);
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => const MatchesScreen(),
-                    ),
-                  ),
+                    MaterialPageRoute(builder: (_) => const MatchesScreen()),
+                  );
                 },
-                customPaddingHorizontal: 10.0,
-                customPaddingVertical: 10.0,
-                customBorderRadius: 100,
-                iconData: Icons.group,
-                bgColor: navigationMenuState.activeIndex == 3
-                    ? Theme.of(context).colorScheme.inversePrimary
-                    : Theme.of(context).colorScheme.onPrimary,
-                iconColor: navigationMenuState.activeIndex == 3
-                    ? Colors.white
-                    : Colors.purple.withOpacity(0.3),
               ),
-              CustomButton(
-                onClick: () => {
-                  navigationMenuState.selectActiveMenu(4),
+              // Messages
+              buildButton(
+                index: 4,
+                icon: Icons.message,
+                onClick: () {
+                  navigationMenuState.selectActiveMenu(4);
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => const MessagePage(),
-                    ),
-                  ),
+                    MaterialPageRoute(builder: (_) => const MessagePage()),
+                  );
                 },
-                customPaddingHorizontal: 10.0,
-                customPaddingVertical: 10.0,
-                customBorderRadius: 100,
-                iconData: Icons.message,
-                bgColor: navigationMenuState.activeIndex == 4
-                    ? Theme.of(context).colorScheme.inversePrimary
-                    : Theme.of(context).colorScheme.onPrimary,
-                iconColor: navigationMenuState.activeIndex == 4
-                    ? Colors.white
-                    : Colors.purple.withOpacity(0.3),
               ),
             ],
           ),
